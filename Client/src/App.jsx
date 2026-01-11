@@ -7,6 +7,7 @@ import About from "./pages/About";
 import Services from "./pages/Services";
 import Career from "./pages/Career";
 import Contact from "./pages/Contact";
+import Footer from './components/Footer'
 import { Toaster } from "react-hot-toast";
 
 const App = () => {
@@ -24,7 +25,7 @@ const App = () => {
             <Route path="/contact" element={<Contact />} />
           </Routes>
         </main>
-        {/* <Footer /> */}
+        <Footer />
       </div>
     </BrowserRouter>
   );
