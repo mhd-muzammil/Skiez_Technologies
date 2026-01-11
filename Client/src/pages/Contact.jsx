@@ -54,7 +54,7 @@ export default function Contact() {
                 📧 hrskiezdigital@gmail.com
               </div>
               <div className="bg-slate-800 border border-slate-700 rounded-xl p-4 text-sm">
-                📞 +91 9XXXXXXXXX
+                📞 +91 9994401291
               </div>
               <div className="bg-slate-800 border border-slate-700 rounded-xl p-4 text-sm">
                 📍 Chennai, India
@@ -73,6 +73,8 @@ export default function Contact() {
           />
         </div>
       </section>
+
+
 
       {/* FORM + MAP */}
       <section className="max-w-6xl mx-auto px-6 pb-20">
@@ -147,3 +149,4 @@ export default function Contact() {
     </main>
   );
 }
+  
