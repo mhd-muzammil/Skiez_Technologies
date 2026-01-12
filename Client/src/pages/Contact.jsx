@@ -1,152 +1,123 @@
-import React, { useState } from "react";
-import { motion } from "framer-motion";
-import { toast } from "react-hot-toast";
+"use client";
+import { Mail, Phone, MapPin } from "lucide-react";
+import { useRef } from "react";
+import emailjs from "@emailjs/browser";
+import { toast } from "react-hot-toast"; // ✅ Toast import
+
+const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
 export default function Contact() {
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
+  const form = useRef();
 
-  const handleChange = (e) =>
-    setForm({ ...form, [e.target.name]: e.target.value });
-
-  const submit = (e) => {
+  const sendEmail = (e) => {
     e.preventDefault();
 
-    if (!form.name || !form.email || !form.message) {
-      toast.error("Please fill all fields");
-      return;
-    }
+    // ✅ show loading toast
+    const toastId = toast.loading("Sending your message…");
 
-    toast.success("Message sent successfully 🚀");
-    setForm({ name: "", email: "", message: "" });
+    emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, form.current, PUBLIC_KEY).then(
+      () => {
+        toast.success("Message sent successfully! 🎉", { id: toastId });
+        form.current.reset();
+      },
+      (error) => {
+        console.error(error.text);
+        toast.error("Something went wrong. Please try again 😢", {
+          id: toastId,
+        });
+      }
+    );
   };
 
   return (
-    <main className="min-h-screen bg-slate-900 text-slate-100 overflow-hidden">
-      {/* HERO */}
-      <section className="relative">
-        {/* Glow */}
-        <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-slate-700/20 blur-3xl rounded-full" />
-
-        <div className="relative max-w-6xl mx-auto px-6 py-20 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-          {/* LEFT CONTENT */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <h1 className="text-4xl md:text-5xl font-bold">
-              Let’s build something
-              <span className="block text-slate-300">together</span>
-            </h1>
-
-            <p className="mt-4 text-slate-400 max-w-md">
-              Have an idea, project, or collaboration in mind? Our team is ready
-              to help you design, build, and scale.
-            </p>
-
-            {/* QUICK CONTACT */}
-            <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4">
-              <div className="bg-slate-800 border border-slate-700 rounded-xl p-4 text-sm">
-                📧 hrskiezdigital@gmail.com
-              </div>
-              <div className="bg-slate-800 border border-slate-700 rounded-xl p-4 text-sm">
-                📞 +91 9994401291
-              </div>
-              <div className="bg-slate-800 border border-slate-700 rounded-xl p-4 text-sm">
-                📍 Chennai, India
-              </div>
-            </div>
-          </motion.div>
-
-          {/* VECTOR IMAGE */}
-          <motion.img
-            src="https://www.svgrepo.com/show/331724/contact-us.svg"
-            alt="Contact illustration"
-            className="w-full max-w-md mx-auto"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          />
-        </div>
+    <div className="w-full min-h-screen font-sans text-gray-800 overflow-x-hidden">
+      {/* Hero Section */}
+      <section className="relative flex flex-col items-center justify-center text-center h-[400px] overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-slate-500 via-slate-900 to-slate-500"></div>
+        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cloudy-day.png')] opacity-10"></div>
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[500px] h-[250px] bg-orange-300 rounded-t-full z-10"></div>
+        <img
+          src="/src/assets/flamingo.png"
+          alt="Flamingo"
+          className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[250px] md:w-[350px] z-20 object-contain"
+        />
+        <h1 className="text-white text-5xl md:text-7xl font-bold z-30">
+          Let’s have a talk
+        </h1>
       </section>
 
+      {/* Bottom Section */}
+      <section className="flex flex-col md:flex-row w-full">
+        {/* Map */}
+        <div className="w-full md:w-1/3 h-[420px] md:h-auto flex">
+          <iframe
+            title="Skiez Technologies Location"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3350.254693386756!2d80.00480307428212!3d12.675498221302535!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a52fc27ea82ab43%3A0x881f8239a8d025af!2sSkiez%20Technologies%20India%20Pvt%20Ltd!5e1!3m2!1sen!2sin!4v1768193287643!5m2!1sen!2sin"
+            className="w-full h-full grayscale brightness-[90%] border-0 block"
+            allowFullScreen
+            loading="lazy"
+          ></iframe>
+        </div>
 
+        {/* Meet Us */}
+        <div className="w-full md:w-1/3 bg-white flex flex-col justify-center p-10">
+          <h2 className="text-2xl font-semibold mb-8">Meet us</h2>
+          <ul className="space-y-4 text-[15px]">
+            <li className="flex items-center gap-3">
+              <Phone className="w-5 h-5 text-teal-500" />
+              +91 82200 43041
+            </li>
+            <li className="flex items-center gap-3">
+              <Mail className="w-5 h-5 text-teal-500" />
+              info@skiezdigital.com
+            </li>
+            <li className="flex items-center gap-3">
+              <MapPin className="w-5 h-5 text-teal-500" />
+              Chengalpattu / Chennai, Tamil Nadu, India
+            </li>
+          </ul>
+        </div>
 
-      {/* FORM + MAP */}
-      <section className="max-w-6xl mx-auto px-6 pb-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-          {/* FORM */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="bg-slate-800/70 backdrop-blur border border-slate-700 rounded-2xl p-6"
-          >
-            <h2 className="text-xl font-semibold mb-4">Send us a message</h2>
+        {/* Pitch Us — Contact Form */}
+        <div className="w-full md:w-1/3 bg-gray-100 flex flex-col justify-center p-10">
+          <h2 className="text-2xl font-semibold mb-8">Pitch us</h2>
 
-            <form onSubmit={submit} className="space-y-4">
-              <input
-                name="name"
-                value={form.name}
-                onChange={handleChange}
-                placeholder="Your name"
-                className="w-full px-4 py-2 rounded-lg bg-slate-900 border border-slate-700 focus:ring-2 focus:ring-slate-500"
-              />
-
-              <input
-                name="email"
-                value={form.email}
-                onChange={handleChange}
-                placeholder="Your email"
-                type="email"
-                className="w-full px-4 py-2 rounded-lg bg-slate-900 border border-slate-700 focus:ring-2 focus:ring-slate-500"
-              />
-
-              <textarea
-                name="message"
-                value={form.message}
-                onChange={handleChange}
-                placeholder="Tell us about your project"
-                rows="4"
-                className="w-full px-4 py-2 rounded-lg bg-slate-900 border border-slate-700 focus:ring-2 focus:ring-slate-500"
-              />
-
-              <button
-                type="submit"
-                className="w-full py-2.5 bg-slate-100 text-slate-900 font-semibold rounded-lg hover:bg-white transition"
-              >
-                Send Message
-              </button>
-            </form>
-          </motion.div>
-
-          {/* MAP */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="overflow-hidden rounded-2xl border border-slate-700"
-          >
-            <iframe
-              title="Location"
-              src="https://www.google.com/maps?q=Chennai&output=embed"
-              className="w-full h-full min-h-[320px] grayscale invert"
-              loading="lazy"
+          <form ref={form} onSubmit={sendEmail} className="space-y-4">
+            <input
+              type="text"
+              name="name"
+              placeholder="Your name"
+              required
+              className="w-full p-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-slate-900"
             />
-          </motion.div>
+
+            <input
+              type="email"
+              name="email"
+              placeholder="Your e-mail"
+              required
+              className="w-full p-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-slate-900"
+            />
+
+            <textarea
+              name="message"
+              placeholder="Your message"
+              rows="4"
+              required
+              className="w-full p-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-slate-900"
+            ></textarea>
+
+            <button
+              type="submit"
+              className="bg-slate-700 hover:bg-slate-900 transition text-white font-semibold px-8 py-2 rounded-full"
+            >
+              Send
+            </button>
+          </form>
         </div>
       </section>
-
-      <footer className="border-t border-slate-800 py-8 text-center text-sm text-slate-500">
-        © {new Date().getFullYear()} SKIEZ DIGITAL
-      </footer>
-    </main>
+    </div>
   );
 }
-  
