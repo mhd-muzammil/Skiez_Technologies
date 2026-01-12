@@ -31,7 +31,7 @@ export default function ServiceCard() {
   return (
     <section className="bg-slate-900 py-20">
       <h2 className="text-center text-3xl sm:text-4xl font-bold text-white mb-10">
-        ServiceCard
+        Services
       </h2>
 
       <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 px-6">
