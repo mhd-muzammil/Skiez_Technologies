@@ -15,6 +15,7 @@ const PillNav = ({
   pillTextColor,
   onMobileMenuClick,
   initialLoadAnimation = true,
+  children,
 }) => {
   const resolvedPillTextColor = pillTextColor ?? baseColor;
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -239,7 +240,7 @@ const PillNav = ({
   };
 
   return (
-    <div className="absolute top-[1em] z-[1000] w-full left-0 flex justify-center">
+    <div className="absolute top-[1em] z-[1000] w-full left-0 flex justify-center items-center gap-4">
       <nav
         className={`flex items-center justify-center gap-3 box-border px-4 md:px-0 ${className}`}
         aria-label="Primary"
@@ -414,6 +415,7 @@ const PillNav = ({
           />
         </button>
       </nav>
+      {children}
       <div
         ref={mobileMenuRef}
         className="md:hidden absolute top-[3em] left-4 right-4 rounded-[27px] shadow-[0_8px_32px_rgba(0,0,0,0.12)] z-[998] origin-top"

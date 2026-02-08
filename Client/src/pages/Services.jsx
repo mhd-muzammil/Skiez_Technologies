@@ -12,6 +12,9 @@ import {
   Zap,
   Globe,
 } from "lucide-react";
+import HoverButton from "../components/ui/HoverButton";
+import { AnimatedBeamMultipleOutputDemo } from "../components/AnimatedBeamDemo";
+import SpotlightCard from "../components/ui/SpotlightCard";
 
 // Animation variants
 const fadeInUp = {
@@ -138,10 +141,14 @@ const Services = () => {
             We deliver top-tier digital solutions, from web and mobile apps to AI-driven insights. Partner with us to build technology that matters.
           </motion.p>
         </div>
+        
+        <div className="relative z-10 w-full flex justify-center mt-12 mb-0">
+             <AnimatedBeamMultipleOutputDemo className="!bg-transparent !border-0 !shadow-none" />
+        </div>
       </section>
 
       {/* --- SERVICES GRID --- */}
-      <section className="py-20 px-6 bg-slate-900 relative">
+      <section className="pt-0 pb-20 px-6 bg-slate-900 relative">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial="hidden"
@@ -151,15 +158,12 @@ const Services = () => {
             className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
           >
             {services.map((service, index) => (
-              <motion.div
+              <SpotlightCard
                 key={index}
-                variants={fadeInUp}
-                className="group relative p-8 rounded-3xl bg-slate-800/50 border border-slate-700 hover:border-cyan-500/50 transition-all duration-300 hover:shadow-2xl hover:shadow-cyan-500/10 overflow-hidden"
+                className="p-8 h-full"
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                
-                <div className="relative z-10">
-                  <div className="mb-6 p-3 bg-slate-900 rounded-2xl w-fit border border-slate-700 group-hover:scale-110 transition-transform duration-300">
+                <div className="relative z-10 flex flex-col h-full">
+                  <div className="mb-6 p-3 bg-slate-900 rounded-2xl w-fit border border-slate-700 shadow-lg shadow-cyan-900/20 group-hover:scale-110 transition-transform duration-300">
                     {service.icon}
                   </div>
                   
@@ -167,20 +171,20 @@ const Services = () => {
                     {service.title}
                   </h3>
                   
-                  <p className="text-slate-400 mb-6 leading-relaxed">
+                  <p className="text-slate-400 mb-8 leading-relaxed flex-grow">
                     {service.description}
                   </p>
 
-                  <ul className="space-y-2">
+                  <ul className="space-y-3 mt-auto">
                     {service.features.map((feature, idx) => (
                       <li key={idx} className="flex items-center text-sm text-slate-300">
-                        <CheckCircle2 className="w-4 h-4 mr-2 text-cyan-500/70" />
+                        <CheckCircle2 className="w-4 h-4 mr-3 text-cyan-500" />
                         {feature}
                       </li>
                     ))}
                   </ul>
                 </div>
-              </motion.div>
+              </SpotlightCard>
             ))}
           </motion.div>
         </div>
@@ -298,9 +302,8 @@ const Services = () => {
                     Let's discuss how we can help you achieve your goals with our premium technology services.
                 </p>
                 <div className="relative z-10 flex flex-col sm:flex-row justify-center gap-4">
-                    <button className="px-8 py-4 bg-white text-cyan-700 font-bold rounded-full hover:bg-cyan-50 transition-colors shadow-lg flex items-center justify-center gap-2">
-                        Start a Project <ArrowRight className="w-5 h-5" />
-                    </button>
+
+                    <HoverButton text="Start a Project" href="/contact" />
                     <button className="px-8 py-4 bg-cyan-700 text-white font-bold rounded-full hover:bg-cyan-800 transition-colors border border-cyan-500">
                         View Portfolio
                     </button>

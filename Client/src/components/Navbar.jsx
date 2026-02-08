@@ -1,8 +1,11 @@
 import React from "react";
+import { useLocation } from "react-router-dom";
 import PillNav from "./ui/PillNav";
 import logo from "../assets/Skiez-Tech.png";
 
 const Header = () => {
+  const location = useLocation();
+
   return (
     <div>
       <PillNav
@@ -13,9 +16,9 @@ const Header = () => {
           { label: "Services", href: "/services" },
           { label: "About", href: "/about" },
           { label: "Career", href: "/careers" },
-          { label: "Contact", href: "/contact   " },
+          { label: "Contact", href: "/contact" },
         ]}
-        activeHref="/"
+        activeHref={location.pathname}
         className="custom-nav"
         ease="power2.easeOut"
         baseColor="#000000"

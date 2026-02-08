@@ -126,7 +126,7 @@ export default function Careers() {
   ];
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 font-sans selection:bg-cyan-500/30">
+    <div className="min-h-screen bg-slate-900 text-slate-100 font-sans selection:bg-cyan-500/30">
       
       {/* HERO SECTION */}
       <section className="relative py-20 px-6 overflow-hidden flex flex-col items-center text-center">
