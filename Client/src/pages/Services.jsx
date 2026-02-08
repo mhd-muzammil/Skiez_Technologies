@@ -1,422 +1,315 @@
-"use client";
 import React from "react";
+import { motion } from "framer-motion";
+import {
+  Code,
+  Smartphone,
+  Layout,
+  Cloud,
+  Database,
+  Cpu,
+  ArrowRight,
+  CheckCircle2,
+  Zap,
+  Globe,
+} from "lucide-react";
 
-/**
- * ✅ PERFECT Slice Transition (NO SVG / NO gaps)
- * - clipPath never shows white line gaps
- * - just pass current section bg and next section bg
- */
-function SliceCut({
-  bg = "bg-white",
-  nextBg = "bg-slate-900",
-  height = "h-44 md:h-36",
-  invert = false,
-}) {
+// Animation variants
+const fadeInUp = {
+  hidden: { opacity: 0, y: 40 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+};
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+    },
+  },
+};
+
+const services = [
+  {
+    icon: <Code className="w-8 h-8 text-cyan-400" />,
+    title: "Web Development",
+    description:
+      "Custom, high-performance websites tailored to your brand. We build scalable solutions using React, Next.js, and modern frameworks.",
+    features: ["Custom Web Apps", "E-commerce Solutions", "CMS Integration"],
+  },
+  {
+    icon: <Smartphone className="w-8 h-8 text-purple-400" />,
+    title: "Mobile App Development",
+    description:
+      "Native and cross-platform mobile applications that provide seamless user experiences on iOS and Android devices.",
+    features: ["React Native", "Flutter", "iOS & Android Native"],
+  },
+  {
+    icon: <Layout className="w-8 h-8 text-pink-400" />,
+    title: "UI/UX Design",
+    description:
+      "User-centric design that drives engagement. We create intuitive interfaces and beautiful experiences that users love.",
+    features: ["Wireframing", "Prototyping", "User Research"],
+  },
+  {
+    icon: <Cloud className="w-8 h-8 text-blue-400" />,
+    title: "Cloud Solutions",
+    description:
+      "Secure and scalable cloud infrastructure. We help you migrate, manage, and optimize your applications on AWS, Azure, or GCP.",
+    features: ["Cloud Migration", "DevOps", "Serverless Architecture"],
+  },
+  {
+    icon: <Cpu className="w-8 h-8 text-emerald-400" />,
+    title: "AI & Machine Learning",
+    description:
+      "Leverage the power of AI to automate processes and gain insights. We build intelligent models tailored to your business data.",
+    features: ["Predictive Analytics", "NLP", "Computer Vision"],
+  },
+  {
+    icon: <Database className="w-8 h-8 text-orange-400" />,
+    title: "Data Analytics",
+    description:
+      "Turn data into actionable insights. We build robust data pipelines and visualization dashboards to help you make informed decisions.",
+    features: ["Big Data", "BI Dashboards", "Data Warehousing"],
+  },
+];
+
+const processSteps = [
+  {
+    num: "01",
+    title: "Discovery",
+    desc: "We dive deep into your business goals, requirements, and target audience to build a solid foundation.",
+  },
+  {
+    num: "02",
+    title: "Strategy & Design",
+    desc: "We create a comprehensive roadmap and design intuitive prototypes that align with your vision.",
+  },
+  {
+    num: "03",
+    title: "Development",
+    desc: "Our experts build your solution using cutting-edge technologies, ensuring cleaner code and scalability.",
+  },
+  {
+    num: "04",
+    title: "Launch & Scale",
+    desc: "We deploy your product with precision and provide ongoing support to help you scale effortlessly.",
+  },
+];
+
+const Services = () => {
   return (
-    <div
-      className={`relative w-full ${height} overflow-hidden`}
-      style={{ marginTop: "-2px", marginBottom: "-2px" }} // ✅ removes seam line
-    >
-      {/* next section background underneath */}
-      <div className={`absolute inset-0 ${nextBg}`} />
+    <div className="bg-slate-900 text-white min-h-screen overflow-x-hidden">
+      {/* --- HERO SECTION --- */}
+      <section className="relative py-20 md:py-32 px-6 overflow-hidden">
+        {/* Background Elements */}
+        <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
+          <div className="absolute -top-[20%] -left-[10%] w-[50%] h-[50%] bg-cyan-500/10 rounded-full blur-[120px]" />
+          <div className="absolute top-[40%] -right-[10%] w-[40%] h-[40%] bg-purple-500/10 rounded-full blur-[120px]" />
+        </div>
 
-      {/* top layer with slice */}
-      <div
-        className={`relative w-full h-full ${bg}`}
-        style={{
-          clipPath: invert
-            ? "polygon(0 0, 100% 0, 100% 100%, 0 55%)"
-            : "polygon(0 0, 100% 0, 100% 45%, 0 100%)",
-        }}
-      />
+        <div className="relative z-10 max-w-7xl mx-auto text-center">
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={fadeInUp}
+            className="inline-block mb-4 px-4 py-1.5 rounded-full border border-slate-700 bg-slate-800/50 backdrop-blur-sm"
+          >
+            <span className="text-sm font-medium text-cyan-400">
+              Transforming Ideas into Reality
+            </span>
+          </motion.div>
+
+          <motion.h1
+            initial="hidden"
+            animate="visible"
+            variants={fadeInUp}
+            className="text-5xl md:text-7xl font-bold tracking-tight mb-8 bg-gradient-to-r from-white via-slate-200 to-slate-500 bg-clip-text text-transparent"
+          >
+            Our Expertise. <br /> Your Growth.
+          </motion.h1>
+
+          <motion.p
+            initial="hidden"
+            animate="visible"
+            variants={fadeInUp}
+            className="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed"
+          >
+            We deliver top-tier digital solutions, from web and mobile apps to AI-driven insights. Partner with us to build technology that matters.
+          </motion.p>
+        </div>
+      </section>
+
+      {/* --- SERVICES GRID --- */}
+      <section className="py-20 px-6 bg-slate-900 relative">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={staggerContainer}
+            className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+          >
+            {services.map((service, index) => (
+              <motion.div
+                key={index}
+                variants={fadeInUp}
+                className="group relative p-8 rounded-3xl bg-slate-800/50 border border-slate-700 hover:border-cyan-500/50 transition-all duration-300 hover:shadow-2xl hover:shadow-cyan-500/10 overflow-hidden"
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                
+                <div className="relative z-10">
+                  <div className="mb-6 p-3 bg-slate-900 rounded-2xl w-fit border border-slate-700 group-hover:scale-110 transition-transform duration-300">
+                    {service.icon}
+                  </div>
+                  
+                  <h3 className="text-2xl font-bold mb-3 text-white group-hover:text-cyan-400 transition-colors">
+                    {service.title}
+                  </h3>
+                  
+                  <p className="text-slate-400 mb-6 leading-relaxed">
+                    {service.description}
+                  </p>
+
+                  <ul className="space-y-2">
+                    {service.features.map((feature, idx) => (
+                      <li key={idx} className="flex items-center text-sm text-slate-300">
+                        <CheckCircle2 className="w-4 h-4 mr-2 text-cyan-500/70" />
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* --- PROCESS SECTION --- */}
+      <section className="py-24 px-6 bg-slate-950">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-5xl font-bold mb-4">How We Work</h2>
+            <p className="text-slate-400 max-w-xl mx-auto">
+              Our streamlined process ensures transparency and quality at every step of the journey.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-4 gap-8 relative">
+            {/* Connecting Line (Desktop) */}
+            <div className="hidden md:block absolute top-[2.5rem] left-[10%] right-[10%] h-[2px] bg-gradient-to-r from-cyan-500/0 via-cyan-500/30 to-cyan-500/0 z-0" />
+
+            {processSteps.map((step, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1, duration: 0.5 }}
+                viewport={{ once: true }}
+                className="relative z-10 text-center"
+              >
+                <div className="w-20 h-20 mx-auto bg-slate-900 rounded-full border-4 border-slate-800 flex items-center justify-center mb-6 shadow-xl shadow-cyan-900/20 group hover:border-cyan-500/50 transition-colors duration-300">
+                  <span className="text-2xl font-bold text-slate-500 group-hover:text-cyan-400 transition-colors">
+                    {step.num}
+                  </span>
+                </div>
+                <h3 className="text-xl font-bold mb-3">{step.title}</h3>
+                <p className="text-sm text-slate-400 leading-relaxed">
+                  {step.desc}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* --- WHY CHOOSE US (Tech Stack inspired) --- */}
+      <section className="py-20 px-6 bg-slate-900">
+        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-3xl md:text-5xl font-bold mb-6">
+              Why Choose <span className="text-cyan-400">Skiez?</span>
+            </h2>
+            <p className="text-slate-400 text-lg mb-8 leading-relaxed">
+              We don't just write code; we build digital assets that add value to your business. Our team is committed to excellence, innovation, and your success.
+            </p>
+            
+            <div className="space-y-6">
+              {[
+                { title: "Expert Team", desc: "Developers with years of industry experience." },
+                { title: "Scalable Code", desc: "Architecture designed to grow with you." },
+                { title: "24/7 Support", desc: "We are always here when you need us." },
+              ].map((item, i) => (
+                <div key={i} className="flex gap-4">
+                  <div className="w-12 h-12 rounded-xl bg-cyan-500/10 flex items-center justify-center shrink-0">
+                    <Zap className="w-6 h-6 text-cyan-400" />
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-bold">{item.title}</h4>
+                    <p className="text-slate-400 text-sm">{item.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+          
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="relative"
+          >
+            <div className="absolute inset-0 bg-gradient-to-tr from-cyan-500/20 to-purple-500/20 rounded-3xl blur-2xl" />
+            <div className="relative bg-slate-800 border border-slate-700 rounded-3xl p-8 md:p-12 overflow-hidden">
+                <div className="grid grid-cols-2 gap-4">
+                   <div className="bg-slate-700/50 p-4 rounded-xl text-center">
+                        <h3 className="text-3xl font-bold text-white mb-1">98%</h3>
+                        <p className="text-xs text-slate-400">Client Satisfaction</p>
+                   </div>
+                   <div className="bg-slate-700/50 p-4 rounded-xl text-center">
+                        <h3 className="text-3xl font-bold text-white mb-1">50+</h3>
+                        <p className="text-xs text-slate-400">Projects Delivered</p>
+                   </div>
+                   <div className="bg-slate-700/50 p-4 rounded-xl text-center col-span-2">
+                        <h3 className="text-3xl font-bold text-white mb-1">10+</h3>
+                        <p className="text-xs text-slate-400">Countries Served</p>
+                   </div>
+                </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* --- CTA SECTION --- */}
+      <section className="py-20 px-6">
+        <div className="max-w-5xl mx-auto">
+            <div className="relative rounded-[2.5rem] bg-gradient-to-r from-cyan-600 to-blue-600 p-12 md:p-20 text-center overflow-hidden">
+                <div className="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10" />
+                
+                <h2 className="relative z-10 text-3xl md:text-5xl font-bold text-white mb-6">
+                    Ready to Transform Your Business?
+                </h2>
+                <p className="relative z-10 text-cyan-100 text-lg mb-10 max-w-2xl mx-auto">
+                    Let's discuss how we can help you achieve your goals with our premium technology services.
+                </p>
+                <div className="relative z-10 flex flex-col sm:flex-row justify-center gap-4">
+                    <button className="px-8 py-4 bg-white text-cyan-700 font-bold rounded-full hover:bg-cyan-50 transition-colors shadow-lg flex items-center justify-center gap-2">
+                        Start a Project <ArrowRight className="w-5 h-5" />
+                    </button>
+                    <button className="px-8 py-4 bg-cyan-700 text-white font-bold rounded-full hover:bg-cyan-800 transition-colors border border-cyan-500">
+                        View Portfolio
+                    </button>
+                </div>
+            </div>
+        </div>
+      </section>
     </div>
   );
-}
+};
 
-
-export default function HomeSections() {
-  return (
-    <main className="w-full overflow-x-hidden bg-white text-slate-900">
-      {/* ===================== HERO ===================== */}
-      <section className="bg-white py-12 md:py-20">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <div className="grid items-center gap-10 lg:grid-cols-2">
-            {/* left */}
-            <div>
-              <span className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-xs font-semibold text-slate-700">
-                WorldSoft • Technical Services
-              </span>
-
-              <h1 className="mt-5 text-4xl font-extrabold leading-tight sm:text-5xl">
-                Transforming{" "}
-                <span className="text-slate-500">Technical Services.</span>
-              </h1>
-
-              <p className="mt-4 max-w-xl text-sm leading-relaxed text-slate-600 sm:text-base">
-                Modern solutions, faster delivery, and powerful support to keep
-                your business running smoothly — with premium design and
-                performance.
-              </p>
-
-              <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-                <button className="rounded-xl bg-slate-900 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-slate-900/15 transition hover:-translate-y-[1px] hover:bg-slate-800">
-                  Get Started
-                </button>
-                <button className="rounded-xl border border-slate-200 bg-white px-6 py-3 text-sm font-semibold text-slate-900 transition hover:-translate-y-[1px] hover:bg-slate-50">
-                  View Pricing
-                </button>
-              </div>
-
-              {/* quick cards */}
-              <div className="mt-8 grid max-w-lg grid-cols-3 gap-3">
-                {[
-                  { k: "Fast", v: "Delivery" },
-                  { k: "24/7", v: "Support" },
-                  { k: "Secure", v: "Systems" },
-                ].map((item) => (
-                  <div
-                    key={item.k}
-                    className="rounded-2xl border border-slate-200 bg-white p-3 shadow-sm"
-                  >
-                    <p className="text-base font-extrabold">{item.k}</p>
-                    <p className="text-[11px] text-slate-500">{item.v}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* right */}
-            <div className="relative">
-              <div className="absolute -inset-6 rounded-[2rem] bg-gradient-to-br from-slate-200 via-white to-slate-100 blur-2xl" />
-              <div className="relative rounded-[2rem] border border-slate-200 bg-white p-6 shadow-xl">
-                <div className="flex items-center justify-between">
-                  <p className="text-sm font-semibold text-slate-700">
-                    System Status
-                  </p>
-                  <span className="rounded-full bg-emerald-100 px-3 py-1 text-xs font-semibold text-emerald-700">
-                    Online
-                  </span>
-                </div>
-
-                <div className="mt-6 space-y-4">
-                  {[
-                    { label: "Servers", value: "99.98%" },
-                    { label: "Response Time", value: "1.2s avg" },
-                    { label: "Active Clients", value: "1,240+" },
-                  ].map((x) => (
-                    <div
-                      key={x.label}
-                      className="rounded-2xl border border-slate-200 bg-slate-50 p-4"
-                    >
-                      <p className="text-[11px] font-semibold text-slate-500">
-                        {x.label}
-                      </p>
-                      <p className="mt-1 text-lg font-extrabold text-slate-900">
-                        {x.value}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="mt-6 rounded-2xl bg-slate-900 p-5 text-white">
-                  <p className="text-sm font-semibold">Need help instantly?</p>
-                  <p className="mt-1 text-xs text-slate-300">
-                    Priority support for Professional & Expert plans.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Slice to SERVICES */}
-      <SliceCut bg="bg-white" nextBg="bg-slate-900" />
-
-      {/* ===================== SERVICES ===================== */}
-      <section className="bg-slate-900 py-14 md:py-20 text-white">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <div className="max-w-2xl">
-            <h2 className="text-3xl font-extrabold sm:text-4xl">
-              Our Services
-            </h2>
-            <p className="mt-3 text-sm text-slate-300 sm:text-base">
-              End-to-end technical solutions that scale with your business.
-            </p>
-          </div>
-
-          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {[
-              {
-                title: "Website Development",
-                desc: "High-performance websites with modern UI/UX.",
-              },
-              {
-                title: "Technical Support",
-                desc: "On-demand assistance with priority care.",
-              },
-              {
-                title: "System Management",
-                desc: "Secure and scalable infrastructure setup.",
-              },
-              {
-                title: "Maintenance",
-                desc: "Monthly support packages and monitoring.",
-              },
-              {
-                title: "Consultation",
-                desc: "Project planning and technical decisions.",
-              },
-              {
-                title: "Automation",
-                desc: "AI + automation to reduce manual work.",
-              },
-            ].map((card) => (
-              <div
-                key={card.title}
-                className="rounded-3xl border border-white/10 bg-white/5 p-6 shadow-sm backdrop-blur transition hover:-translate-y-1 hover:bg-white/10"
-              >
-                <p className="text-lg font-bold">{card.title}</p>
-                <p className="mt-2 text-sm leading-relaxed text-slate-300">
-                  {card.desc}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Slice to PRICING */}
-      <SliceCut bg="bg-slate-900" nextBg="bg-white" invert />
-
-      {/* ===================== PRICING ===================== */}
-      <section className="bg-white py-14 md:py-20">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <div className="max-w-2xl">
-            <h2 className="text-3xl font-extrabold sm:text-4xl">Pricing</h2>
-            <p className="mt-3 text-sm text-slate-600 sm:text-base">
-              Choose a plan that fits your needs. Upgrade anytime.
-            </p>
-          </div>
-
-          <div className="mt-10 grid gap-6 lg:grid-cols-3">
-            {[
-              {
-                name: "Beginner",
-                price: "$15",
-                tag: "Starter for small teams",
-                features: ["Basic support", "Website setup", "Monthly updates"],
-                highlight: false,
-              },
-              {
-                name: "Professional",
-                price: "$25",
-                tag: "Best for growing businesses",
-                features: [
-                  "Priority support",
-                  "Advanced maintenance",
-                  "Performance optimization",
-                ],
-                highlight: true,
-              },
-              {
-                name: "Expert",
-                price: "$45",
-                tag: "Enterprise level service",
-                features: [
-                  "24/7 support",
-                  "Automation setup",
-                  "Dedicated consultation",
-                ],
-                highlight: false,
-              },
-            ].map((p) => (
-              <div
-                key={p.name}
-                className={`rounded-[2rem] border p-7 shadow-sm transition hover:-translate-y-1 ${
-                  p.highlight
-                    ? "border-slate-900 bg-slate-900 text-white shadow-xl shadow-slate-900/15"
-                    : "border-slate-200 bg-white"
-                }`}
-              >
-                {p.highlight && (
-                  <span className="inline-flex rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-white">
-                    Most Popular
-                  </span>
-                )}
-
-                <h3 className="mt-4 text-xl font-extrabold">{p.name}</h3>
-
-                <p
-                  className={`mt-1 text-sm ${
-                    p.highlight ? "text-slate-300" : "text-slate-600"
-                  }`}
-                >
-                  {p.tag}
-                </p>
-
-                <p className="mt-6 text-4xl font-extrabold">
-                  {p.price}
-                  <span
-                    className={`text-base font-semibold ${
-                      p.highlight ? "text-slate-300" : "text-slate-500"
-                    }`}
-                  >
-                    /mo
-                  </span>
-                </p>
-
-                <ul className="mt-6 space-y-3 text-sm">
-                  {p.features.map((f) => (
-                    <li key={f} className="flex items-center gap-2">
-                      <span
-                        className={`h-2 w-2 rounded-full ${
-                          p.highlight ? "bg-white" : "bg-slate-900"
-                        }`}
-                      />
-                      <span
-                        className={
-                          p.highlight ? "text-slate-200" : "text-slate-700"
-                        }
-                      >
-                        {f}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-
-                <button
-                  className={`mt-8 w-full rounded-2xl px-5 py-3 text-sm font-semibold transition ${
-                    p.highlight
-                      ? "bg-white text-slate-900 hover:bg-slate-100"
-                      : "bg-slate-900 text-white hover:bg-slate-800"
-                  }`}
-                >
-                  Choose Plan
-                </button>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Slice to ABOUT */}
-      <SliceCut bg="bg-white" nextBg="bg-slate-900" />
-
-      {/* ===================== ABOUT ===================== */}
-      <section className="bg-slate-900 py-14 md:py-20 text-white">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <div className="grid gap-10 lg:grid-cols-2">
-            <div>
-              <h2 className="text-3xl font-extrabold sm:text-4xl">About Us</h2>
-              <p className="mt-4 text-sm leading-relaxed text-slate-300 sm:text-base">
-                We provide technical services with a focus on premium quality,
-                reliable delivery, and modern user experience. Our goal is to
-                help brands move faster with confidence.
-              </p>
-
-              <div className="mt-8 grid grid-cols-2 gap-4">
-                {[
-                  { title: "Trusted Service", value: "4+ Years" },
-                  { title: "Projects Completed", value: "150+" },
-                  { title: "Client Satisfaction", value: "98%" },
-                  { title: "Support", value: "24/7" },
-                ].map((kpi) => (
-                  <div
-                    key={kpi.title}
-                    className="rounded-3xl border border-white/10 bg-white/5 p-5"
-                  >
-                    <p className="text-[11px] font-semibold text-slate-300">
-                      {kpi.title}
-                    </p>
-                    <p className="mt-1 text-2xl font-extrabold">{kpi.value}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="relative">
-              <div className="absolute -inset-6 rounded-[2rem] bg-gradient-to-br from-white/10 via-transparent to-white/5 blur-2xl" />
-              <div className="relative rounded-[2rem] border border-white/10 bg-white/5 p-7">
-                <p className="text-sm font-semibold text-slate-200">
-                  “We don’t just build — we maintain, support, and scale.”
-                </p>
-                <p className="mt-3 text-sm text-slate-300">
-                  The team works closely with you to ensure clean delivery and
-                  smooth performance.
-                </p>
-
-                <div className="mt-6 rounded-2xl bg-white/10 p-5">
-                  <p className="text-xs font-semibold text-slate-200">
-                    Why clients love us
-                  </p>
-                  <p className="mt-2 text-sm text-slate-300">
-                    Premium UI/UX, on-time delivery, and responsive support —
-                    with modern tech stack.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Slice to CONTACT */}
-      <SliceCut bg="bg-slate-900" nextBg="bg-white" invert />
-
-      {/* ===================== CONTACT ===================== */}
-      <section className="bg-white py-14 md:py-20">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <div className="grid gap-10 lg:grid-cols-2">
-            <div>
-              <h2 className="text-3xl font-extrabold sm:text-4xl">
-                Contact Us
-              </h2>
-              <p className="mt-3 text-sm text-slate-600 sm:text-base">
-                Tell us about your requirements. We’ll get back within 24 hours.
-              </p>
-
-              <div className="mt-8 space-y-3 text-sm text-slate-700">
-                <p>
-                  <span className="font-semibold">Email:</span>{" "}
-                  support@worldsoft.com
-                </p>
-                <p>
-                  <span className="font-semibold">Phone:</span> +91 98765 43210
-                </p>
-                <p>
-                  <span className="font-semibold">Location:</span> Tamil Nadu,
-                  India
-                </p>
-              </div>
-            </div>
-
-            <form className="rounded-[2rem] border border-slate-200 bg-white p-7 shadow-sm">
-              <div className="grid gap-4">
-                <input
-                  className="h-12 w-full rounded-2xl border border-slate-200 bg-white px-4 text-sm outline-none focus:border-slate-900"
-                  placeholder="Your Name"
-                />
-                <input
-                  className="h-12 w-full rounded-2xl border border-slate-200 bg-white px-4 text-sm outline-none focus:border-slate-900"
-                  placeholder="Email Address"
-                />
-                <textarea
-                  rows={5}
-                  className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm outline-none focus:border-slate-900"
-                  placeholder="Message"
-                />
-                <button
-                  type="button"
-                  className="rounded-2xl bg-slate-900 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-slate-900/15 transition hover:-translate-y-[1px] hover:bg-slate-800"
-                >
-                  Send Message
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </section>
-    </main>
-  );
-}
+export default Services;
