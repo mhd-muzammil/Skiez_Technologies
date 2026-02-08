@@ -127,7 +127,7 @@ export const AnimatedBeam = ({
           transition={{
             delay,
             duration,
-            ease: [0.16, 1, 0.3, 1], // https://easings.net/#easeOutExpo
+            ease: "linear",
             repeat: Infinity,
             repeatDelay: 0,
           }}

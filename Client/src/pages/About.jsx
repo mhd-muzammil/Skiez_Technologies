@@ -1,7 +1,7 @@
-import React from "react";
 import { motion } from "framer-motion";
 import { Building2, ShoppingBag, GraduationCap, Stethoscope, Store, Building } from "lucide-react";
 import HoverButton from "../components/ui/HoverButton";
+import BlurImage from "../components/ui/BlurImage";
 
 // Animations
 const fadeInUp = {
@@ -36,8 +36,8 @@ export default function About() {
       <section className="relative py-24 px-6 overflow-hidden">
         {/* Background Elements */}
         <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0 pointer-events-none">
-           <div className="absolute top-0 right-0 w-[50%] h-[50%] bg-cyan-500/10 rounded-full blur-[120px]" />
-           <div className="absolute bottom-0 left-0 w-[40%] h-[40%] bg-purple-500/10 rounded-full blur-[120px]" />
+           <div className="absolute top-0 right-0 w-[50%] h-[50%] bg-cyan-500/10 rounded-full blur-[120px] will-change-transform translate-z-0" />
+           <div className="absolute bottom-0 left-0 w-[40%] h-[40%] bg-purple-500/10 rounded-full blur-[120px] will-change-transform translate-z-0" />
            <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-20 mix-blend-overlay"></div>
         </div>
 
@@ -82,7 +82,7 @@ export default function About() {
                 className="w-full md:w-1/2 perspective-1000"
             >
                  <div className="relative rounded-2xl overflow-hidden shadow-2xl shadow-cyan-500/10 border border-slate-700 bg-slate-800 p-2 transform transition-transform hover:scale-[1.02]">
-                    <img
+                    <BlurImage
                         className="rounded-xl w-full object-cover"
                         src="https://res.cloudinary.com/tailwindmasterkit/image/upload/v1627290155/assets/untitled-design-47png-a821832209.png"
                         alt="Skiez Team"
@@ -120,7 +120,7 @@ export default function About() {
                         className="group flex flex-col items-center gap-4 p-6 bg-slate-900 rounded-2xl border border-slate-800 hover:border-cyan-500/50 transition-all duration-300 hover:-translate-y-1"
                     >
                          <div className="relative w-16 h-16 rounded-full overflow-hidden border-2 border-slate-700 group-hover:border-cyan-500 transition-colors">
-                             <img src={item.img} alt={item.name} className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-300"/>
+                             <BlurImage src={item.img} alt={item.name} className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-300"/>
                          </div>
                          <div className="text-center">
                              <h3 className="font-semibold text-slate-300 group-hover:text-cyan-400 transition-colors">{item.name}</h3>
@@ -162,38 +162,54 @@ export default function About() {
              <div className="relative">
                  {/* This could be the masonry grid or a feature image. Let's make a mini grid */}
                  <div className="grid grid-cols-2 gap-4">
-                     <motion.img 
+                     <motion.div 
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.1 }}
-                        src="https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?auto=format&fit=crop&w=600&q=80" 
-                        className="rounded-2xl object-cover h-48 w-full shadow-lg"
-                     />
-                     <motion.img 
+                        className="rounded-2xl overflow-hidden h-48 w-full shadow-lg"
+                     >
+                        <BlurImage 
+                           src="https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?auto=format&fit=crop&w=600&q=80" 
+                           className="object-cover h-full w-full"
+                        />
+                     </motion.div>
+                     <motion.div 
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.2 }}
-                        src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80" 
-                        className="rounded-2xl object-cover h-48 w-full shadow-lg translate-y-8"
-                     />
-                     <motion.img 
+                        className="rounded-2xl overflow-hidden h-48 w-full shadow-lg translate-y-8"
+                     >
+                        <BlurImage 
+                           src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80" 
+                           className="object-cover h-full w-full"
+                        />
+                     </motion.div>
+                     <motion.div 
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.3 }}
-                        src="https://images.unsplash.com/photo-1591696205602-2f950c417cb9?auto=format&fit=crop&w=600&q=80" 
-                        className="rounded-2xl object-cover h-48 w-full shadow-lg"
-                     />
-                     <motion.img 
+                        className="rounded-2xl overflow-hidden h-48 w-full shadow-lg"
+                     >
+                        <BlurImage 
+                           src="https://images.unsplash.com/photo-1591696205602-2f950c417cb9?auto=format&fit=crop&w=600&q=80" 
+                           className="object-cover h-full w-full"
+                        />
+                     </motion.div>
+                     <motion.div 
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.4 }}
-                        src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80" 
-                        className="rounded-2xl object-cover h-48 w-full shadow-lg translate-y-8"
-                     />
+                        className="rounded-2xl overflow-hidden h-48 w-full shadow-lg translate-y-8"
+                     >
+                        <BlurImage 
+                           src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80" 
+                           className="object-cover h-full w-full"
+                        />
+                     </motion.div>
                  </div>
              </div>
           </div>

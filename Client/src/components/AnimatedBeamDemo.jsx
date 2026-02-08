@@ -41,11 +41,11 @@ export function AnimatedBeamMultipleOutputDemo({ className }) {
 
   // Connection config
   const beams = [
-    { from: div1Ref, to: centerRef, curve: 40, duration: 5, delay: 0 },
-    { from: div2Ref, to: centerRef, curve: 20, duration: 6, delay: 2 },
-    { from: div3Ref, to: centerRef, curve: 0,  duration: 4, delay: 1 },
-    { from: div4Ref, to: centerRef, curve: -20, duration: 7, delay: 3 },
-    { from: div5Ref, to: centerRef, curve: -40, duration: 5, delay: 1.5 },
+    { from: div1Ref, to: centerRef, curve: 40, duration: 8, delay: 0 },
+    { from: div2Ref, to: centerRef, curve: 20, duration: 9, delay: 2 },
+    { from: div3Ref, to: centerRef, curve: 0,  duration: 7, delay: 1 },
+    { from: div4Ref, to: centerRef, curve: -20, duration: 10, delay: 3 },
+    { from: div5Ref, to: centerRef, curve: -40, duration: 8, delay: 1.5 },
   ];
 
   return (
@@ -127,7 +127,7 @@ export function AnimatedBeamMultipleOutputDemo({ className }) {
         containerRef={containerRef}
         fromRef={centerRef}
         toRef={userRef}
-        duration={3}
+        duration={6}
         curvature={0}
         pathWidth={3}
         gradientStartColor="#ffffff"

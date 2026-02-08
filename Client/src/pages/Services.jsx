@@ -160,10 +160,10 @@ const Services = () => {
             {services.map((service, index) => (
               <SpotlightCard
                 key={index}
-                className="p-8 h-full"
+                className="h-full"
               >
-                <div className="relative z-10 flex flex-col h-full">
-                  <div className="mb-6 p-3 bg-slate-900 rounded-2xl w-fit border border-slate-700 shadow-lg shadow-cyan-900/20 group-hover:scale-110 transition-transform duration-300">
+                <div className="relative z-10 flex flex-col h-full p-8 group">
+                  <div className="mb-6 p-4 bg-slate-800/50 rounded-2xl w-fit border border-slate-700/50 shadow-lg shadow-cyan-900/10 group-hover:scale-110 group-hover:bg-slate-800 transition-all duration-300">
                     {service.icon}
                   </div>
                   
@@ -171,18 +171,20 @@ const Services = () => {
                     {service.title}
                   </h3>
                   
-                  <p className="text-slate-400 mb-8 leading-relaxed flex-grow">
+                  <p className="text-slate-400 mb-8 leading-relaxed flex-grow group-hover:text-slate-300 transition-colors">
                     {service.description}
                   </p>
 
-                  <ul className="space-y-3 mt-auto">
-                    {service.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-center text-sm text-slate-300">
-                        <CheckCircle2 className="w-4 h-4 mr-3 text-cyan-500" />
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
+                  <div className="border-t border-slate-800 pt-6 mt-auto">
+                    <ul className="space-y-3">
+                      {service.features.map((feature, idx) => (
+                        <li key={idx} className="flex items-center text-sm text-slate-400 group-hover:text-cyan-200 transition-colors">
+                          <CheckCircle2 className="w-4 h-4 mr-3 text-cyan-600/70 group-hover:text-cyan-400 transition-colors" />
+                          {feature}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
               </SpotlightCard>
             ))}
