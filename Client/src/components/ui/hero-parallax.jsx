@@ -64,10 +64,10 @@ export const Header = () => {
         Elevate with Code <br /> Dominate with Reach
       </h1>
       <p className="max-w-2xl text-base md:text-xl mt-8 dark:text-neutral-200 text-justify">
-        At Skiez Technologies India Pvt Ltd, we build scalable, tech-driven
-        solutions across Full-Stack Development, Mobile App Frameworks, and
+        At Skiez Technologies India Pvt Ltd, we build scalable tech-driven
+        solutions across Full-Stack Development, Mobile App Frameworks and
         Database Management. We serve industries like E-Commerce, Healthcare,
-        Education, Real Estate, and B2B, delivering customized digital products
+        Education, Real Estate and B2B, delivering customized digital products
         that meet each business’s unique needs.
       </p>
     </div>
