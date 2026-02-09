@@ -4,6 +4,8 @@ import Navbar from "./components/Navbar";
 import Footer from './components/Footer';
 import { Toaster } from "react-hot-toast";
 import { Loader2 } from "lucide-react";
+import PrivacyTechnologies from "./pages/Privacy";
+import TermsTechnologies from "./pages/Terms";
 
 // Lazy load pages
 const Home = lazy(() => import("./pages/Home"));
@@ -32,6 +34,8 @@ const App = () => {
               <Route path="/services" element={<Services />} />
               <Route path="/careers" element={<Career />} />
               <Route path="/contact" element={<Contact />} />
+              <Route path="/privacy" element={<PrivacyTechnologies />} />
+              <Route path="/terms" element={<TermsTechnologies />} />
             </Routes>
           </Suspense>
         </main>

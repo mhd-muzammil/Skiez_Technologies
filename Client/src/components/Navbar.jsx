@@ -15,7 +15,7 @@ const Header = () => {
           { label: "Home", href: "/" },
           { label: "Services", href: "/services" },
           { label: "About", href: "/about" },
-          { label: "Career", href: "/careers" },
+          // { label: "Career", href: "/careers" },
           { label: "Contact", href: "/contact" },
         ]}
         activeHref={location.pathname}
