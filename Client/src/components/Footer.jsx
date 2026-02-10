@@ -56,11 +56,11 @@ const SuperfluidFooter = () => {
               </a>
             </li>
 
-            <li>
+            {/* <li>
               <a href="/careers" className="cursor-pointer hover:underline">
                 Careers
               </a>
-            </li>
+            </li> */}
 
             <li>
               <a href="/contact" className="cursor-pointer hover:underline">

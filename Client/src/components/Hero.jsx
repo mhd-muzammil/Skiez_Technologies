@@ -2,30 +2,41 @@
 import React from "react";
 import { HeroParallax } from "./ui/hero-parallax";
 
+// Import local assets so Vite hashes them correctly for Vercel
+import skiezDigi from "../assets/skiez-digi.png";
+import marineBD from "../assets/marine-BD.png";
+import pdfApp from "../assets/pdf-app.png";
+import taspef from "../assets/taspef.png";
+import davidSecurity from "../assets/DavidSecurity.png";
+import seaTurtle from "../assets/sea-turtle.png";
+import seaTurtle2 from "../assets/sea-turtle2.png";
+import ruspwak from "../assets/ruspwak.png";
+import shalomPlots from "../assets/Shalomplots.png";
+
 export function HeroParallaxDemo() {
   return <HeroParallax products={products} />;
 }
+
 export const products = [
   {
-    title: "Moonbeam",
-    link: "https://gomoonbeam.com",
-    thumbnail: "/src/assets/skiez-digi.png",
+    title: "Skiez Digital",
+    link: "https://www.skiezdigital.com/",
+    thumbnail: skiezDigi,
   },
   {
     title: "Marine Biodiversity Conservartion",
-    link: "https://www.marinebiodiversityconservation.com/  ",
-    thumbnail: "/src/assets/marine-BD.png",
+    link: "https://www.marinebiodiversityconservation.com/",
+    thumbnail: marineBD,
   },
   {
     title: "Skiez Digital",
     link: "https://www.skiezdigital.com/",
-    thumbnail: "/src/assets/skiez-digi.png",
+    thumbnail: skiezDigi,
   },
-
   {
     title: "Skiezpdbooks",
     link: "https://www.skiezpdfbooks.in/",
-    thumbnail: "/src/assets/pdf-app.png",
+    thumbnail: pdfApp,
   },
   {
     title: "Editrix AI",
@@ -36,28 +47,27 @@ export const products = [
   {
     title: "TASPEF",
     link: "https://taspef.org/",
-    thumbnail: "/src/assets/taspef.png",
+    thumbnail: taspef,
   },
-
   {
     title: "David Security",
     link: "https://www.davidsecurityservices.com/",
-    thumbnail: "/src/assets/DavidSecurity.png",
+    thumbnail: davidSecurity,
   },
   {
     title: "Sea Turtle Conservation",
     link: "https://seaturtleconservation.in/",
-    thumbnail: "/src/assets/sea-turtle.png",
+    thumbnail: seaTurtle,
   },
   {
     title: "TASPEF",
     link: "https://taspef.org/",
-    thumbnail: "/src/assets/taspef.png",
+    thumbnail: taspef,
   },
   {
     title: "RuspWak",
     link: "https://ruspwak.org/",
-    thumbnail: "/src/assets/ruspwak.png",
+    thumbnail: ruspwak,
   },
   {
     title: "Renderwork Studio",
@@ -65,25 +75,24 @@ export const products = [
     thumbnail:
       "https://aceternity.com/images/products/thumbnails/new/renderwork.png",
   },
-
   {
     title: "Shalom Plots",
     link: "https://www.shalomplots.com/",
-    thumbnail: "/src/assets/Shalomplots.png",
+    thumbnail: shalomPlots,
   },
   {
     title: "Sea Turtle Conservation",
     link: "https://seaturtleconservation.in/",
-    thumbnail: "/src/assets/sea-turtle2.png",
+    thumbnail: seaTurtle2,
   },
   {
     title: "RuspWak",
     link: "https://ruspwak.org/",
-    thumbnail: "/src/assets/ruspwak.png",
+    thumbnail: ruspwak,
   },
   {
     title: "Skiezpdbooks",
     link: "https://www.skiezpdfbooks.in/",
-    thumbnail: "/src/assets/pdf-app.png",
+    thumbnail: pdfApp,
   },
 ];
